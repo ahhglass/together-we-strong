@@ -23,7 +23,8 @@
 <section
 	class="text-center text-pretty"
 	class:container={!embedded}
-	class:py-[clamp(3rem,8vw,5rem)]={!embedded}
+	class:pt-[var(--page-offset-top)]={!embedded}
+	class:pb-[clamp(3rem,8vw,5rem)]={!embedded}
 	class:py-4={embedded}
 >
 	<h1 class="text-2xl font-extrabold text-nav sm:text-3xl">{copy.title}</h1>
