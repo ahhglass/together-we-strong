@@ -10,7 +10,7 @@ let cache: { data: CampaignGroup[]; source: 'csv'; at: number } | null = null;
 function csvConfigured(): boolean {
 	return Boolean(
 		env.GOOGLE_SHEET_CSV_URL ||
-			(env.GOOGLE_SHEET_ID && (env.GOOGLE_SHEET_GID || env.GOOGLE_SHEET_TAB))
+		(env.GOOGLE_SHEET_ID && (env.GOOGLE_SHEET_GID || env.GOOGLE_SHEET_TAB))
 	);
 }
 

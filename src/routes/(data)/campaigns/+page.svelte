@@ -11,7 +11,7 @@
 	<title>Активные сборы — {siteConfig.name}</title>
 	<meta
 		name="description"
-		content="Список активных сборов на сайте «{siteConfig.name}». Следите за прогрессом каждого участника."
+		content="Актуальные сборы участников проекта «{siteConfig.name}». Следите за прогрессом и выбирайте, кому помочь."
 	/>
 </svelte:head>
 
@@ -20,9 +20,9 @@
 		<p class="text-base font-bold tracking-wide text-footer-muted uppercase">Сборы</p>
 		<h1 class="mt-2 text-xl font-extrabold text-nav sm:text-2xl">Активные сборы</h1>
 		{#if data.source === 'csv'}
-			<p class="mt-3 text-lg text-footer-muted">
-				Данные обновляются из Google Таблицы каждые несколько минут. Первый незавершённый
-				участник в списке показывается на главной странице.
+			<p class="mt-3 text-lg leading-relaxed text-footer-muted">
+				Здесь опубликованы сборы участников проекта. Суммы и статус обновляются по мере поступления
+				информации. На главной показывается первый незавершённый сбор из списка.
 			</p>
 		{/if}
 	</header>

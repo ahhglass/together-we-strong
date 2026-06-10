@@ -1,6 +1,6 @@
 @import 'tailwindcss';
-@import 'sileo/styles.css';
 @import './theme.css';
+@import './fonts.css';
 @import './components.css';
 @import './layout.css';
 
@@ -19,7 +19,7 @@
 	}
 
 	body {
-		@apply min-h-screen font-sans text-lg text-nav antialiased;
+		@apply min-h-screen font-sans text-lg text-nav;
 	}
 
 	body::before {
@@ -33,9 +33,4 @@
 	a {
 		@apply text-inherit;
 	}
-}
-
-/* Sileo injects its own <style> at runtime (z-index: 50) — !important wins */
-[data-sileo-viewport] {
-	z-index: var(--z-toast) !important;
 }

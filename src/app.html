@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -7,6 +7,21 @@
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover">
+		<script>
+			(function (threshold) {
+				var root = document.documentElement;
+
+				function syncScroll() {
+					root.classList.toggle('nav-is-scrolled', window.scrollY > threshold);
+				}
+
+				syncScroll();
+				document.addEventListener('DOMContentLoaded', syncScroll);
+				window.addEventListener('load', syncScroll);
+				window.addEventListener('pageshow', syncScroll);
+				window.addEventListener('scroll', syncScroll, { passive: true });
+			})(48);
+		</script>
 		<div style="display: contents">%sveltekit.body%</div>
 	</body>
 </html>

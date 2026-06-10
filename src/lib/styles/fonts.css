@@ -1,0 +1,38 @@
+@layer base {
+	/*
+	 * Сглаживание — для всего текста (Tailwind antialiased + Firefox).
+	 * text-rendering: optimizeSpeed на body — быстрый рендер абзацев.
+	 * optimizeLegibility — точечно на заголовках (кернинг, лигатуры).
+	 */
+	body {
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		text-rendering: optimizeSpeed;
+		font-synthesis: none;
+		font-kerning: normal;
+	}
+
+	:is(h1, h2, h3, h4, h5, h6) {
+		text-rendering: optimizeLegibility;
+		font-feature-settings:
+			'kern' 1,
+			'liga' 1,
+			'calt' 1;
+	}
+
+	:is(.site-nav__brand, .campaign-hero h1, .campaigns-board__group-title, .campaigns-board__name) {
+		text-rendering: optimizeLegibility;
+		font-feature-settings:
+			'kern' 1,
+			'liga' 1;
+	}
+
+	.tabular-nums,
+	.animated-amount,
+	number-flow-svelte {
+		font-variant-numeric: tabular-nums;
+		font-feature-settings:
+			'tnum' 1,
+			'kern' 1;
+	}
+}

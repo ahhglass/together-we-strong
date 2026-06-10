@@ -35,7 +35,11 @@
 		<AnimatedAmountGroup>
 			Собрано полностью:
 			<span class="font-bold text-nav">
-				<AnimatedAmount value={totals.completed} format={{ maximumFractionDigits: 0 }} animateOnMount />
+				<AnimatedAmount
+					value={totals.completed}
+					format={{ maximumFractionDigits: 0 }}
+					animateOnMount
+				/>
 			</span>
 			из {totals.total} · всего
 			<span class="font-bold text-nav">

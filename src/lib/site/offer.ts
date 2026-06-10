@@ -115,9 +115,6 @@ export const offerSections: OfferSection[] = [
 	},
 	{
 		title: '13. Реквизиты и контакты Организатора',
-		paragraphs: [
-			`Электронная почта: ${siteConfig.contactEmail}`,
-			`Сайт: «${siteConfig.name}»`
-		]
+		paragraphs: [`Электронная почта: ${siteConfig.contactEmail}`, `Сайт: «${siteConfig.name}»`]
 	}
 ];

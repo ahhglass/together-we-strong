@@ -1,9 +1,10 @@
 import { browser } from '$app/environment';
 import { siteConfig } from '$lib/site/config';
-import { toast } from '$lib/toast';
 
-export async function sharePage() {
-	if (!browser) return;
+export type ShareResult = 'shared' | 'copied' | 'failed' | 'cancelled';
+
+export async function sharePage(): Promise<ShareResult> {
+	if (!browser) return 'failed';
 
 	const url = window.location.href;
 	const { name, shareText } = siteConfig;
@@ -11,16 +12,16 @@ export async function sharePage() {
 	if (navigator.share) {
 		try {
 			await navigator.share({ title: name, text: shareText, url });
-			return;
+			return 'shared';
 		} catch (error) {
-			if (error instanceof DOMException && error.name === 'AbortError') return;
+			if (error instanceof DOMException && error.name === 'AbortError') return 'cancelled';
 		}
 	}
 
 	try {
 		await navigator.clipboard.writeText(`${shareText}\n${url}`);
-		toast.success('Ссылка скопирована', 'Вставьте её в мессенджер или соцсеть');
+		return 'copied';
 	} catch {
-		toast.error('Не удалось поделиться', 'Скопируйте адрес страницы вручную');
+		return 'failed';
 	}
 }

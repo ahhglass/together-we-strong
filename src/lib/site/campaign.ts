@@ -1,14 +1,9 @@
-import type { CampaignParticipant } from './active-campaigns';
+import type { CampaignParticipant, CampaignSpendingItem } from './active-campaigns';
 
 export interface CampaignPayment {
 	cardNumber: string;
 	bank: string;
 	recipient: string;
-}
-
-export interface CampaignSpendingItem {
-	title: string;
-	description: string;
 }
 
 export interface Campaign {

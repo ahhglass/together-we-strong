@@ -40,9 +40,7 @@
 <section class="campaign-hero text-primary" aria-labelledby="campaign-title">
 	<div class="campaign-hero__grid">
 		<div class="campaign-hero__content">
-			<p class="text-base font-bold tracking-wide text-primary/70 uppercase">
-				Активный сбор
-			</p>
+			<p class="text-base font-bold tracking-wide text-primary/70 uppercase">Активный сбор</p>
 
 			<h1
 				id="campaign-title"
@@ -93,11 +91,7 @@
 
 					<p class="mt-3 text-base text-primary/85">
 						<span class="font-bold">
-							<AnimatedAmount
-								value={progress}
-								format={{ maximumFractionDigits: 0 }}
-								suffix="%"
-							/>
+							<AnimatedAmount value={progress} format={{ maximumFractionDigits: 0 }} suffix="%" />
 						</span>
 						<span class="text-primary/70">
 							· осталось <AnimatedAmount value={remaining} />
@@ -115,11 +109,12 @@
 			<div class="campaign-hero__image-wrap">
 				<img
 					class="campaign-hero__image"
-					src="/image/Hero.jpg"
+					src="/image/Hero.avif"
 					alt="Люди вместе поддерживают друг друга"
 					width="960"
 					height="720"
 					loading="eager"
+					fetchpriority="high"
 					decoding="async"
 				/>
 			</div>
@@ -165,20 +160,19 @@
 			{/each}
 		</div>
 
-		<div
-			class="campaign-panel"
-			role="tabpanel"
-			aria-labelledby={`tab-${activeTab}`}
-		>
+		<div class="campaign-panel" role="tabpanel" aria-labelledby={`tab-${activeTab}`}>
 			{#if activeTab === 'story'}
 				<p class="campaign-panel__text text-pretty">
 					{campaign.story}
 				</p>
 			{:else if activeTab === 'help'}
 				<p class="campaign-panel__text text-pretty">
-					Переведите любую сумму на карту получателя. Все пожертвования добровольные и
-					направляются на цели сбора. Перед переводом ознакомьтесь с
-					<a href={routes.offer} class="font-semibold text-button underline decoration-button/30 underline-offset-2">
+					Переведите любую сумму на карту получателя. Все пожертвования добровольные и направляются
+					на цели сбора. Перед переводом ознакомьтесь с
+					<a
+						href={routes.offer}
+						class="font-semibold text-button underline decoration-button/30 underline-offset-2"
+					>
 						правилами пожертвований
 					</a>.
 				</p>
@@ -200,7 +194,10 @@
 						<p class="campaign-panel__text text-pretty">{paragraph}</p>
 					{/each}
 					<p class="campaign-panel__text text-pretty">
-						<a href={routes.offer} class="font-semibold text-button underline decoration-button/30 underline-offset-2">
+						<a
+							href={routes.offer}
+							class="font-semibold text-button underline decoration-button/30 underline-offset-2"
+						>
 							Правила пожертвований
 						</a>
 					</p>

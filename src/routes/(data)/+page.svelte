@@ -13,6 +13,9 @@
 		name="description"
 		content="Активный сбор на сайте «{siteConfig.name}». Узнайте историю, следите за прогрессом и помогите вместе с нами."
 	/>
+	{#if data.campaign}
+		<link rel="preload" as="image" href="/image/Hero.avif" type="image/avif" />
+	{/if}
 </svelte:head>
 
 {#if data.source === 'unavailable'}

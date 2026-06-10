@@ -147,7 +147,8 @@
 		max-width: var(--nav-width-expanded);
 	}
 
-	.site-nav[data-scrolled='true'][data-nav-status='closed'] .site-nav__width {
+	.site-nav[data-scrolled='true'][data-nav-status='closed'] .site-nav__width,
+	html.nav-is-scrolled .site-nav[data-nav-status='closed'] .site-nav__width {
 		max-width: var(--nav-width-compact);
 	}
 
@@ -158,7 +159,8 @@
 		transition: border-radius 0.4s var(--ease-nav);
 	}
 
-	.site-nav[data-scrolled='true'][data-nav-status='closed'] .site-nav__shell {
+	.site-nav[data-scrolled='true'][data-nav-status='closed'] .site-nav__shell,
+	html.nav-is-scrolled .site-nav[data-nav-status='closed'] .site-nav__shell {
 		border-radius: var(--radius-nav-compact);
 	}
 
@@ -258,7 +260,8 @@
 		color: var(--color-nav-muted);
 	}
 
-	.site-nav[data-scrolled='true'] .site-nav__brand {
+	.site-nav[data-scrolled='true'] .site-nav__brand,
+	html.nav-is-scrolled .site-nav .site-nav__brand {
 		font-size: var(--text-lg);
 	}
 
@@ -373,8 +376,17 @@
 		opacity: 0;
 	}
 
-	.site-nav[data-scrolled='true'] .site-nav__top {
+	.site-nav[data-scrolled='true'] .site-nav__top,
+	html.nav-is-scrolled .site-nav .site-nav__top {
 		padding: 0.45rem 0.7rem;
+	}
+
+	/* До syncScroll в onMount — без анимации (нет дёрганья при reload mid-page) */
+	.site-nav:not([data-scroll-synced='true']) .site-nav__width,
+	.site-nav:not([data-scroll-synced='true']) .site-nav__shell,
+	.site-nav:not([data-scroll-synced='true']) .site-nav__top,
+	.site-nav:not([data-scroll-synced='true']) .site-nav__brand {
+		transition: none;
 	}
 
 	@media (max-width: 768px) {

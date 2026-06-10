@@ -24,7 +24,7 @@
 	--color-footer-muted: #8899a6;
 
 	/* Typography */
-	--font-sans: Montserrat, ui-sans-serif, system-ui, sans-serif;
+	--font-sans: 'Montserrat', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
 
 	--text-xs: clamp(0.6875rem, 0.65rem + 0.15vw, 0.8125rem);
 	--text-sm: clamp(0.8125rem, 0.78rem + 0.2vw, 0.9375rem);
@@ -54,10 +54,9 @@
 	--page-bg: var(--color-surface);
 	--color-hero: var(--color-secondary);
 
-	/* Stacking: nav < modal < toast */
+	/* Stacking: nav < modal */
 	--z-nav: 200;
 	--z-modal: 300;
-	--z-toast: 500;
 
 	/* Layout */
 	--container-max: 48rem;

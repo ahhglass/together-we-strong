@@ -2,7 +2,6 @@
 	import { onDestroy } from 'svelte';
 	import Button from '$lib/components/Button.svelte';
 	import type { CampaignPayment } from '$lib/site/campaign';
-	import { toast } from '$lib/toast';
 
 	const COPY_FEEDBACK_MS = 2500;
 
@@ -44,17 +43,13 @@
 
 	function copyCardNumber() {
 		navigator.clipboard.writeText(cardNumberPlain).then(
-			() => {
-				showCopiedFeedback();
-				toast.success('Номер карты скопирован', 'Не забудьте указать в сообщении к переводу «БЛАГОТВОРИТЕЛЬНОСТЬ»');
-			},
+			() => showCopiedFeedback(),
 			() => {
 				try {
 					copyWithFallback(cardNumberPlain);
 					showCopiedFeedback();
-					toast.success('Номер карты скопирован', 'Не забудьте указать в сообщении к переводу «БЛАГОТВОРИТЕЛЬНОСТЬ»');
 				} catch {
-					toast.error('Не удалось скопировать', 'Скопируйте номер вручную');
+					/* номер виден в UI — пользователь может скопировать вручную */
 				}
 			}
 		);
@@ -79,7 +74,9 @@
 <svelte:window onkeydown={onKeydown} />
 
 {#if open}
-	<div class="donation-modal fixed inset-0 z-[var(--z-modal)] flex items-center justify-center p-4 max-sm:items-start max-sm:pt-[30vh]">
+	<div
+		class="donation-modal fixed inset-0 z-[var(--z-modal)] flex items-center justify-center p-4 max-sm:items-start max-sm:pt-[30vh]"
+	>
 		<button
 			type="button"
 			class="absolute inset-0 bg-nav/40 backdrop-blur-[2px]"
@@ -93,9 +90,7 @@
 			aria-labelledby="donation-modal-title"
 			class="relative w-full max-w-lg rounded-[1.05rem] bg-surface p-6 text-nav shadow-xl"
 		>
-			<h2 id="donation-modal-title" class="text-lg font-extrabold sm:text-xl">
-				Перевод на карту
-			</h2>
+			<h2 id="donation-modal-title" class="text-lg font-extrabold sm:text-xl">Перевод на карту</h2>
 			<p class="mt-2 text-lg text-footer-muted">
 				Скопируйте номер карты и переведите любую сумму через приложение банка.
 			</p>

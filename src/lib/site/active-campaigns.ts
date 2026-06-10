@@ -34,7 +34,9 @@ function parseCompleted(value: string | undefined, collected: number, goal: numb
 }
 
 function parseRequiredNumber(value: string | undefined): number {
-	const raw = String(value ?? '').trim().replace(/\s/g, '');
+	const raw = String(value ?? '')
+		.trim()
+		.replace(/\s/g, '');
 	if (!raw) return NaN;
 
 	const parsed = Number(raw);
@@ -42,7 +44,9 @@ function parseRequiredNumber(value: string | undefined): number {
 }
 
 function parseOptionalNumber(value: string | undefined, fallback: number): number {
-	const raw = String(value ?? '').trim().replace(/\s/g, '');
+	const raw = String(value ?? '')
+		.trim()
+		.replace(/\s/g, '');
 	if (!raw) return fallback;
 
 	const parsed = Number(raw);
@@ -208,7 +212,9 @@ export function parseSheetCsv(csv: string): CampaignGroup[] {
 }
 
 function isHeaderRow(row: string[]): boolean {
-	const first = String(row[0] ?? '').trim().toLowerCase();
+	const first = String(row[0] ?? '')
+		.trim()
+		.toLowerCase();
 	return ['name', 'имя', 'участник', 'participant', 'fio', 'фио'].includes(first);
 }
 

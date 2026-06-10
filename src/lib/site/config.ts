@@ -1,15 +1,17 @@
 export const routes = {
 	home: '/',
 	campaigns: '/campaigns',
+	about: '/about',
 	contacts: '/contacts',
 	offer: '/offer'
 } as const;
 
-export type PageId = 'index' | 'campaigns' | 'contacts' | 'offer' | '';
+export type PageId = 'index' | 'campaigns' | 'about' | 'contacts' | 'offer' | '';
 
 export function pageIdFromPath(pathname: string): PageId {
 	if (pathname === '/') return 'index';
 	if (pathname.startsWith('/campaigns')) return 'campaigns';
+	if (pathname.startsWith('/about')) return 'about';
 	if (pathname.startsWith('/contacts')) return 'contacts';
 	if (pathname.startsWith('/offer')) return 'offer';
 	return '';
@@ -26,6 +28,7 @@ export const navMenu = [
 	{
 		title: 'Информация',
 		links: [
+			{ label: 'О проекте', href: routes.about, pageId: 'about' as const },
 			{ label: 'Контакты', href: routes.contacts, pageId: 'contacts' as const },
 			{ label: 'Правила пожертвований', href: routes.offer, pageId: 'offer' as const }
 		]
@@ -43,11 +46,11 @@ export const siteConfig = {
 	shareText: 'Поддержите сбор «Вместе мы сила» — вместе мы можем больше.',
 	organizerName: '«Вместе мы сила»',
 	contactEmail: 'help@together-we-strong.ru',
-	donationRulesUrl: routes.offer,
 	copyrightStartYear: 2026,
 	watermark: 'ВМЕСТЕ МЫ СИЛА',
 	footer: {
-		mission: 'Каждый из нас может помочь кому-то, кто в этом нуждается. Каждое пожертвование — шаг к чужой надежде.',
+		mission:
+			'Добровольная площадка для тех, кому нужна поддержка. Мы не собираем средства на свои счета — только помогаем рассказать о сборе и принять помощь напрямую.',
 		navLinks: navMenu.flatMap((section) =>
 			section.links.map(({ label, href }) => ({ label, href }))
 		),
@@ -77,5 +80,3 @@ export const contactChannels = [
 		href: undefined
 	}
 ] as const;
-
-export type SocialIcon = (typeof siteConfig.footer.socialLinks)[number]['icon'];

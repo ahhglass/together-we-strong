@@ -11,7 +11,12 @@
 
 	let navStatus = $state<NavStatus>('closed');
 	let scrolled = $state(false);
+	let scrollSynced = $state(false);
 	let panelEl = $state<HTMLDivElement | null>(null);
+	let shareLabel = $state('Поделиться');
+	let shareTimeout: ReturnType<typeof setTimeout> | undefined;
+
+	const SHARE_FEEDBACK_MS = 2500;
 
 	const activePage = $derived(pageIdFromPath(page.url.pathname));
 	const isOpen = $derived(navStatus === 'open');
@@ -50,16 +55,35 @@
 	}
 
 	async function share() {
-		await sharePage();
+		const result = await sharePage();
 		closeNav();
+
+		if (result === 'copied') {
+			shareLabel = 'Ссылка скопирована';
+		} else if (result === 'failed') {
+			shareLabel = 'Не удалось скопировать';
+		} else {
+			return;
+		}
+
+		clearTimeout(shareTimeout);
+		shareTimeout = setTimeout(() => {
+			shareLabel = 'Поделиться';
+		}, SHARE_FEEDBACK_MS);
+	}
+
+	function syncScroll() {
+		const isScrolled = window.scrollY > NAV_SCROLL_THRESHOLD;
+		scrolled = isScrolled;
+		document.documentElement.classList.toggle('nav-is-scrolled', isScrolled);
 	}
 
 	onMount(() => {
-		const onScroll = () => {
-			scrolled = window.scrollY > NAV_SCROLL_THRESHOLD;
-		};
-		window.addEventListener('scroll', onScroll, { passive: true });
-		onScroll();
+		syncScroll();
+		scrollSynced = true;
+
+		window.addEventListener('scroll', syncScroll, { passive: true });
+		window.addEventListener('pageshow', syncScroll);
 
 		const onKeydown = (e: KeyboardEvent) => {
 			if (e.key === 'Escape') closeNav();
@@ -67,9 +91,11 @@
 		document.addEventListener('keydown', onKeydown);
 
 		return () => {
-			window.removeEventListener('scroll', onScroll);
+			window.removeEventListener('scroll', syncScroll);
+			window.removeEventListener('pageshow', syncScroll);
 			document.removeEventListener('keydown', onKeydown);
 			document.body.classList.remove('nav-open');
+			clearTimeout(shareTimeout);
 		};
 	});
 
@@ -83,15 +109,11 @@
 	id="site-nav"
 	data-nav-status={navStatus}
 	data-scrolled={scrolled ? 'true' : 'false'}
+	data-scroll-synced={scrollSynced ? 'true' : 'false'}
 	aria-label="Главная навигация"
 >
 	<!-- svelte-ignore a11y_click_events_have_key_events a11y_no_static_element_interactions -->
-	<div
-		class="site-nav__backdrop"
-		role="presentation"
-		aria-hidden="true"
-		onclick={closeNav}
-	></div>
+	<div class="site-nav__backdrop" role="presentation" aria-hidden="true" onclick={closeNav}></div>
 
 	<div class="site-nav__bar">
 		<div class="site-nav__width">
@@ -115,14 +137,14 @@
 					<a href={routes.home} class="site-nav__brand">Вместе мы сила</a>
 
 					<div class="site-nav__actions site-nav__actions--bar">
-						<Button type="button" onclick={share}>Поделиться</Button>
+						<Button type="button" onclick={share}>{shareLabel}</Button>
 					</div>
 				</div>
 
 				<div class="site-nav__panel" id="site-nav-panel" bind:this={panelEl}>
 					<div class="site-nav__panel-inner">
 						<div class="site-nav__panel-actions">
-							<Button type="button" onclick={share}>Поделиться</Button>
+							<Button type="button" onclick={share}>{shareLabel}</Button>
 						</div>
 						{#each navMenu as section}
 							<div>
@@ -130,10 +152,8 @@
 								<ul class="site-nav__links">
 									{#each section.links as link}
 										<li>
-											<a
-												href={link.href}
-												class:is-active={isActive(link.pageId)}
-												onclick={closeNav}>{link.label}</a
+											<a href={link.href} class:is-active={isActive(link.pageId)} onclick={closeNav}
+												>{link.label}</a
 											>
 										</li>
 									{/each}
