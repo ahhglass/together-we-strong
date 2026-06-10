@@ -1,0 +1,292 @@
+@layer components {
+	.page-content {
+		flex: 1;
+		width: 100%;
+		padding-top: var(--page-offset-top);
+		padding-bottom: var(--page-offset-bottom);
+	}
+
+	.page-content--flush {
+		padding-top: 0;
+	}
+
+	.container {
+		width: 100%;
+		max-width: var(--container-max);
+		margin-inline: auto;
+		padding-inline: var(--container-padding);
+	}
+
+	.container--narrow {
+		max-width: var(--container-narrow);
+	}
+
+	.campaign-hero {
+		background: var(--color-hero);
+		border-bottom-left-radius: var(--hero-radius);
+		border-bottom-right-radius: var(--hero-radius);
+		overflow: hidden;
+	}
+
+	.campaign-hero__grid {
+		display: grid;
+		align-items: end;
+		max-width: var(--hero-shell-max);
+		margin-inline: auto;
+	}
+
+	.campaign-hero__content {
+		padding-inline: var(--container-padding);
+		padding-bottom: clamp(2rem, 6vw, 3.5rem);
+		padding-top: var(--hero-padding-top);
+	}
+
+	.campaign-hero__media {
+		display: none;
+	}
+
+	.campaign-hero__image {
+		display: block;
+		width: 100%;
+		height: 100%;
+		min-height: clamp(14rem, 38vw, 22rem);
+		object-fit: cover;
+		object-position: center 20%;
+	}
+
+	@media (min-width: 768px) {
+		.campaign-hero__grid {
+			grid-template-columns: minmax(0, 1fr) minmax(18rem, 1.08fr);
+		}
+
+		.campaign-hero__content {
+			padding-right: clamp(0.75rem, 2vw, 1.5rem);
+		}
+
+		.campaign-hero__media {
+			display: block;
+			align-self: stretch;
+			margin-right: calc(-1 * max(0px, (100vw - var(--hero-shell-max)) / 2));
+			margin-left: clamp(-0.5rem, -1.5vw, -1.25rem);
+		}
+
+		.campaign-hero__image-wrap {
+			height: 100%;
+			min-height: clamp(18rem, 42vw, 28rem);
+			overflow: hidden;
+			border-top-left-radius: var(--hero-image-radius);
+			border-bottom-left-radius: var(--hero-image-radius);
+			border-bottom-right-radius: var(--hero-radius);
+		}
+	}
+
+	.campaign-tabs {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	.campaign-tab {
+		display: flex;
+		width: 100%;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.75rem;
+		border-radius: 2rem;
+		background: var(--color-footer);
+		padding: 1rem 1.1rem;
+		text-align: left;
+		font-size: var(--text-lg);
+		font-weight: 700;
+		line-height: var(--leading-snug);
+		color: var(--color-nav);
+		transition:
+			background 200ms ease,
+			box-shadow 200ms ease;
+	}
+
+	.campaign-tab:hover {
+		background: color-mix(in srgb, var(--color-footer) 80%, var(--color-button) 20%);
+	}
+
+	.campaign-tab--active {
+		background: color-mix(in srgb, var(--color-footer) 65%, var(--color-button) 35%);
+		box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-button) 25%, transparent);
+	}
+
+	.campaign-panel {
+		border-radius: 1.05rem;
+		background: var(--color-footer);
+		padding: clamp(1.25rem, 3vw, 2rem);
+		color: var(--color-nav);
+	}
+
+	.campaign-panel__text {
+		font-size: var(--text-lg);
+		font-weight: 700;
+		line-height: var(--leading-snug);
+		color: var(--color-nav);
+	}
+
+	.campaign-panel__list {
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
+		list-style: none;
+	}
+
+	.campaign-panel__list-item {
+		padding-bottom: 1.25rem;
+		border-bottom: 1px solid color-mix(in srgb, var(--color-nav) 12%, transparent);
+	}
+
+	.campaign-panel__list-item:last-child {
+		padding-bottom: 0;
+		border-bottom: none;
+	}
+
+	.campaign-panel__detail {
+		margin-top: 0.35rem;
+		font-size: var(--text-lg);
+		font-weight: 500;
+		line-height: var(--leading-snug);
+		color: color-mix(in srgb, var(--color-nav) 82%, transparent);
+	}
+
+	.campaigns-board__summary {
+		margin-bottom: 1.25rem;
+	}
+
+	.campaigns-board__grid {
+		display: grid;
+		gap: 1.25rem;
+	}
+
+	@media (min-width: 64rem) {
+		.campaigns-board__grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 1.5rem;
+		}
+	}
+
+	.campaigns-board__group {
+		border-radius: 1.05rem;
+		background: var(--color-footer);
+		padding: clamp(1rem, 3vw, 1.5rem);
+	}
+
+	.campaigns-board__group-title {
+		margin-bottom: 0.85rem;
+		font-size: var(--text-lg);
+		font-weight: 800;
+		color: var(--color-nav);
+	}
+
+	.campaigns-board__list {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		min-height: 2.5rem;
+		list-style: none;
+	}
+
+	.campaigns-board__item {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.75rem;
+		border-radius: 0.85rem;
+		background: var(--color-surface);
+		padding: 0.65rem 0.75rem;
+	}
+
+	.campaigns-board__status {
+		display: flex;
+		flex-shrink: 0;
+		align-items: center;
+		justify-content: center;
+		width: 1.25rem;
+		font-size: var(--text-base);
+		font-weight: 700;
+		color: var(--color-footer-muted);
+	}
+
+	.campaigns-board__status--done {
+		color: var(--color-button);
+	}
+
+	.campaigns-board__item--done {
+		background: color-mix(in srgb, var(--color-button) 12%, var(--color-surface));
+	}
+
+	.campaigns-board__item--featured {
+		outline: 2px solid color-mix(in srgb, var(--color-button) 55%, transparent);
+		outline-offset: -2px;
+	}
+
+	.campaigns-board__badge {
+		flex-shrink: 0;
+		border-radius: 999px;
+		background: color-mix(in srgb, var(--color-button) 18%, var(--color-surface));
+		padding: 0.15rem 0.5rem;
+		font-size: 0.75rem;
+		font-weight: 700;
+		color: var(--color-nav);
+	}
+
+	.campaigns-board__label {
+		display: flex;
+		min-width: 0;
+		flex: 1;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.6rem;
+	}
+
+	.campaigns-board__name {
+		font-size: var(--text-lg);
+		font-weight: 600;
+		line-height: var(--leading-snug);
+		color: var(--color-nav);
+	}
+
+	.campaigns-board__item--done .campaigns-board__name {
+		text-decoration: line-through;
+		text-decoration-color: color-mix(in srgb, var(--color-nav) 35%, transparent);
+	}
+
+	.campaigns-board__amount {
+		display: flex;
+		flex-shrink: 0;
+		align-items: center;
+		gap: 0.25rem;
+		font-size: var(--text-base);
+		color: var(--color-footer-muted);
+	}
+
+	.campaigns-board__collected {
+		font-weight: 700;
+		color: var(--color-nav);
+	}
+
+	.campaigns-board__goal {
+		white-space: nowrap;
+		font-weight: 600;
+	}
+
+	.animated-amount,
+	number-flow-svelte {
+		font-variant-numeric: tabular-nums;
+		line-height: 0.85;
+	}
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+body.nav-open {
+	overflow: hidden;
+}

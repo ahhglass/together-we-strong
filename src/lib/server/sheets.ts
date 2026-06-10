@@ -1,0 +1,76 @@
+import { env } from '$env/dynamic/private';
+import { parseSheetCsv, type CampaignGroup } from '$lib/site/active-campaigns';
+
+const CACHE_TTL_MS = 1 * 60 * 1000;
+
+export type CampaignDataSource = 'csv' | 'unavailable';
+
+let cache: { data: CampaignGroup[]; source: CampaignDataSource; at: number } | null = null;
+
+function csvConfigured(): boolean {
+	return Boolean(
+		env.GOOGLE_SHEET_CSV_URL ||
+			(env.GOOGLE_SHEET_ID && (env.GOOGLE_SHEET_GID || env.GOOGLE_SHEET_TAB))
+	);
+}
+
+function buildCsvUrl(): string | null {
+	if (env.GOOGLE_SHEET_CSV_URL) return env.GOOGLE_SHEET_CSV_URL;
+
+	if (env.GOOGLE_SHEET_ID && env.GOOGLE_SHEET_GID) {
+		return `https://docs.google.com/spreadsheets/d/${env.GOOGLE_SHEET_ID}/export?format=csv&gid=${env.GOOGLE_SHEET_GID}`;
+	}
+
+	if (env.GOOGLE_SHEET_ID && env.GOOGLE_SHEET_TAB) {
+		return `https://docs.google.com/spreadsheets/d/${env.GOOGLE_SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(env.GOOGLE_SHEET_TAB)}`;
+	}
+
+	return null;
+}
+
+async function fetchPublishedCsv(): Promise<CampaignGroup[]> {
+	const url = buildCsvUrl();
+	if (!url) throw new Error('CSV URL not configured');
+
+	const response = await fetch(url, { redirect: 'follow' });
+	if (!response.ok) {
+		throw new Error(`Google Sheet CSV error: ${response.status}`);
+	}
+
+	const csv = await response.text();
+	const groups = parseSheetCsv(csv);
+
+	if (groups.length === 0) {
+		throw new Error('CSV returned no participants');
+	}
+
+	return groups;
+}
+
+function useUnavailable(): { groups: CampaignGroup[]; source: 'unavailable' } {
+	const groups: CampaignGroup[] = [];
+	cache = { data: groups, source: 'unavailable', at: Date.now() };
+	return { groups, source: 'unavailable' };
+}
+
+export async function fetchCampaignGroups(): Promise<{
+	groups: CampaignGroup[];
+	source: CampaignDataSource;
+}> {
+	if (cache && Date.now() - cache.at < CACHE_TTL_MS) {
+		return { groups: cache.data, source: cache.source };
+	}
+
+	if (!csvConfigured()) {
+		return useUnavailable();
+	}
+
+	try {
+		const groups = await fetchPublishedCsv();
+		cache = { data: groups, source: 'csv', at: Date.now() };
+		return { groups, source: 'csv' };
+	} catch (error) {
+		console.error('Failed to load Google Sheet CSV:', error);
+		return useUnavailable();
+	}
+}
