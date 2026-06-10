@@ -12,11 +12,11 @@
 			class="relative overflow-hidden rounded-[1.05rem] bg-footer px-[clamp(1.25rem,4vw,2.5rem)] py-[clamp(1.5rem,4vw,2.5rem)]"
 		>
 			<p
-				class="pointer-events-none absolute inset-x-0 bottom-0 z-0 flex justify-center select-none"
+				class="pointer-events-none absolute inset-x-0 bottom-0 z-0 flex w-full justify-center overflow-hidden px-2 select-none sm:px-4"
 				aria-hidden="true"
 			>
 				<span
-					class="block translate-y-[0%] whitespace-nowrap text-[clamp(2.75rem,13vw,6.5rem)] font-extrabold uppercase leading-none tracking-tight text-nav/7"
+					class="block w-full max-w-full origin-bottom text-center whitespace-nowrap text-[clamp(1.125rem,7.5vw,6.5rem)] font-extrabold uppercase leading-none tracking-tight text-nav/7 max-sm:tracking-tighter"
 				>
 					{siteConfig.watermark}
 				</span>
