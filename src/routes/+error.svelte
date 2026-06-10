@@ -21,9 +21,9 @@
 <section
 	class="container mx-auto flex w-full max-w-2xl flex-col items-center py-[clamp(2rem,8vw,4rem)] text-center"
 >
-	<p class="text-base font-bold tracking-wide text-footer-muted">{status}</p>
-	<h1 class="mt-2 text-xl font-extrabold text-nav sm:text-2xl">{title}</h1>
-	<p class="mt-3 text-pretty text-lg leading-relaxed text-nav/85">{message}</p>
+	<p class="eyebrow">{status}</p>
+	<h1 class="page-title">{title}</h1>
+	<p class="text-body mt-3 text-pretty">{message}</p>
 	<div class="mt-6">
 		<Button href={routes.home}>На главную</Button>
 	</div>

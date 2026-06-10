@@ -19,6 +19,7 @@
 	--color-button-hover: #00386c;
 	--color-cta: #ff8204;
 	--radius-button: 1.05rem;
+	--radius-card: var(--radius-button);
 	--radius-button-cta: 2rem;
 
 	/* Footer */

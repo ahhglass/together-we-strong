@@ -57,7 +57,7 @@
 		{format}
 		{locales}
 		{suffix}
-		class={['animated-amount tabular-nums', className]}
+		class={['animated-amount', className]}
 	/>
 {:else}
 	<span class={className}>{fallbackText(display)}</span>

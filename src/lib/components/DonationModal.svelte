@@ -101,7 +101,7 @@
 			role="dialog"
 			aria-modal="true"
 			aria-labelledby="donation-modal-title"
-			class="donation-modal__panel relative w-full max-w-lg rounded-[1.05rem] bg-surface p-6 text-nav shadow-xl"
+			class="donation-modal__panel relative w-full max-w-lg rounded-card bg-surface p-6 text-nav shadow-xl"
 		>
 			<h2 id="donation-modal-title" class="text-lg font-extrabold sm:text-xl">Перевод на карту</h2>
 			<p class="mt-2 text-lg text-footer-muted">
@@ -110,20 +110,20 @@
 
 			<div class="mt-5 space-y-4">
 				<div>
-					<p class="text-base font-bold tracking-wide text-footer-muted uppercase">Получатель</p>
+					<p class="eyebrow">Получатель</p>
 					<p class="mt-1 text-lg font-semibold">{payment.recipient}</p>
 				</div>
 
 				<div>
-					<p class="text-base font-bold tracking-wide text-footer-muted uppercase">Банк</p>
+					<p class="eyebrow">Банк</p>
 					<p class="mt-1 text-lg font-semibold">{payment.bank}</p>
 				</div>
 
 				<div>
-					<p class="text-base font-bold tracking-wide text-footer-muted uppercase">Номер карты</p>
+					<p class="eyebrow">Номер карты</p>
 					<button
 						type="button"
-						class="donation-modal__copy mt-2 flex w-full cursor-pointer items-center justify-between rounded-[1.05rem] bg-footer px-4 py-3 text-lg font-bold transition-colors hover:bg-footer/80"
+						class="donation-modal__copy card mt-2 flex w-full cursor-pointer items-center justify-between px-4 py-3 text-lg font-bold transition-colors hover:bg-footer/80"
 						class:donation-modal__copy--done={copied}
 						aria-label={copied ? 'Номер карты скопирован' : 'Скопировать номер карты'}
 						onclick={copyCardNumber}

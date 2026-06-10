@@ -15,10 +15,10 @@
 	/>
 </svelte:head>
 
-<article class="container py-[clamp(2rem,6vw,3.5rem)] text-pretty">
-	<header class="border-b border-nav/15 pb-6">
-		<p class="text-base font-bold tracking-wide text-footer-muted uppercase">Сборы</p>
-		<h1 class="mt-2 text-xl font-extrabold text-nav sm:text-2xl">Активные сборы</h1>
+<article class="container page-article">
+	<header class="page-header">
+		<p class="eyebrow">Сборы</p>
+		<h1 class="page-title">Активные сборы</h1>
 		{#if data.source === 'csv'}
 			<p class="mt-3 text-lg leading-relaxed text-footer-muted">
 				Здесь опубликованы сборы участников проекта. Суммы и статус обновляются по мере поступления

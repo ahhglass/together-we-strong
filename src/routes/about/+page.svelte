@@ -11,11 +11,11 @@
 	/>
 </svelte:head>
 
-<article class="container py-[clamp(2rem,6vw,3.5rem)] text-pretty">
-	<header class="border-b border-nav/15 pb-6">
-		<p class="text-base font-bold tracking-wide text-footer-muted uppercase">О проекте</p>
-		<h1 class="mt-2 text-xl font-extrabold text-nav sm:text-2xl">{aboutMeta.title}</h1>
-		<p class="mt-4 text-lg leading-relaxed text-nav/85">{aboutMeta.intro}</p>
+<article class="container page-article">
+	<header class="page-header">
+		<p class="eyebrow">О проекте</p>
+		<h1 class="page-title">{aboutMeta.title}</h1>
+		<p class="text-body mt-4">{aboutMeta.intro}</p>
 	</header>
 
 	<div class="mt-8 space-y-8">
@@ -24,7 +24,7 @@
 				<h2 class="text-xl font-extrabold text-nav">{section.title}</h2>
 				<div class="mt-3 space-y-3">
 					{#each section.paragraphs as paragraph}
-						<p class="text-lg leading-relaxed text-nav/85">{paragraph}</p>
+						<p class="text-body">{paragraph}</p>
 					{/each}
 				</div>
 			</section>

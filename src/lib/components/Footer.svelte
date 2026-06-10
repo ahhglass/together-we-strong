@@ -9,7 +9,7 @@
 <footer class="pb-[var(--page-offset-bottom)]">
 	<div class="container">
 		<div
-			class="relative overflow-hidden rounded-[1.05rem] bg-footer px-[clamp(1.25rem,4vw,2.5rem)] py-[clamp(1.5rem,4vw,2.5rem)]"
+			class="card relative overflow-hidden px-[clamp(1.25rem,4vw,2.5rem)] py-[clamp(1.5rem,4vw,2.5rem)]"
 		>
 			<p
 				class="pointer-events-none absolute inset-x-0 bottom-0 z-0 flex w-full justify-center overflow-hidden px-2 select-none sm:px-4"

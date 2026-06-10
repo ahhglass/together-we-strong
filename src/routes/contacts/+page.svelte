@@ -10,18 +10,18 @@
 	/>
 </svelte:head>
 
-<article class="container py-[clamp(2rem,6vw,3.5rem)] text-pretty">
-	<header class="border-b border-nav/15 pb-6">
-		<p class="text-base font-bold tracking-wide text-footer-muted uppercase">Связь</p>
-		<h1 class="mt-2 text-xl font-extrabold text-nav sm:text-2xl">{contactsPage.title}</h1>
+<article class="container page-article">
+	<header class="page-header">
+		<p class="eyebrow">Связь</p>
+		<h1 class="page-title">{contactsPage.title}</h1>
 		<p class="mt-3 text-lg text-footer-muted">{contactsPage.intro}</p>
 	</header>
 
 	<div class="mt-8 space-y-6">
 		<dl class="space-y-4">
 			{#each contactChannels as channel}
-				<div class="rounded-[1.05rem] bg-footer px-4 py-4 sm:px-5">
-					<dt class="text-base font-bold tracking-wide text-footer-muted uppercase">
+				<div class="card px-4 py-4 sm:px-5">
+					<dt class="eyebrow">
 						{channel.label}
 					</dt>
 					<dd class="mt-1 text-lg font-semibold text-nav">

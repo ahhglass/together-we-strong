@@ -40,7 +40,7 @@
 <section class="campaign-hero text-primary" aria-labelledby="campaign-title">
 	<div class="campaign-hero__grid">
 		<div class="campaign-hero__content">
-			<p class="text-base font-bold tracking-wide text-primary/70 uppercase">Активный сбор</p>
+			<p class="eyebrow eyebrow--light">Активный сбор</p>
 
 			<h1
 				id="campaign-title"
@@ -62,13 +62,13 @@
 				<AnimatedAmountGroup>
 					<div class="flex items-end justify-between gap-4">
 						<div>
-							<p class="text-base font-bold tracking-wide text-primary/70 uppercase">Собрано</p>
+							<p class="eyebrow eyebrow--light">Собрано</p>
 							<p class="mt-1 text-3xl font-extrabold sm:text-4xl">
 								<AnimatedAmount value={campaign.collected} animateOnMount />
 							</p>
 						</div>
 						<div class="text-right">
-							<p class="text-base font-bold tracking-wide text-primary/70 uppercase">Цель</p>
+							<p class="eyebrow eyebrow--light">Цель</p>
 							<p class="mt-1 text-3xl font-extrabold sm:text-4xl">
 								<AnimatedAmount value={campaign.goal} />
 							</p>
@@ -171,7 +171,7 @@
 					на цели сбора. Перед переводом ознакомьтесь с
 					<a
 						href={routes.offer}
-						class="font-semibold text-button underline decoration-button/30 underline-offset-2"
+						class="link-accent"
 					>
 						правилами пожертвований
 					</a>.
@@ -196,7 +196,7 @@
 					<p class="campaign-panel__text text-pretty">
 						<a
 							href={routes.offer}
-							class="font-semibold text-button underline decoration-button/30 underline-offset-2"
+							class="link-accent"
 						>
 							Правила пожертвований
 						</a>
