@@ -287,6 +287,11 @@ body {
 	min-height: 100vh;
 }
 
-body.nav-open {
+body.nav-open,
+body.modal-open {
+	overflow: hidden;
+}
+
+html:has(body.modal-open) {
 	overflow: hidden;
 }

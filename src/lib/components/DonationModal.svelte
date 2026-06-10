@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { browser } from '$app/environment';
 	import { onDestroy } from 'svelte';
 	import Button from '$lib/components/Button.svelte';
 	import type { CampaignPayment } from '$lib/site/campaign';
@@ -68,18 +69,32 @@
 		if (!open) resetCopyState();
 	});
 
-	onDestroy(resetCopyState);
+	$effect(() => {
+		if (!browser) return;
+
+		document.body.classList.toggle('modal-open', open);
+
+		return () => {
+			document.body.classList.remove('modal-open');
+		};
+	});
+
+	onDestroy(() => {
+		if (browser) document.body.classList.remove('modal-open');
+		resetCopyState();
+	});
 </script>
 
 <svelte:window onkeydown={onKeydown} />
 
 {#if open}
-	<div class="donation-modal fixed inset-0 z-[var(--z-modal)] flex items-center justify-center p-4">
+	<div class="donation-modal fixed inset-0 z-[var(--z-modal)] flex items-center justify-center overflow-hidden p-4">
 		<button
 			type="button"
 			class="absolute inset-0 bg-nav/40 backdrop-blur-[2px]"
 			aria-label="Закрыть окно"
 			onclick={close}
+			ontouchmove={(e) => e.preventDefault()}
 		></button>
 
 		<div
