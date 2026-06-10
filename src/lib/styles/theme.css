@@ -17,7 +17,9 @@
 	/* Buttons */
 	--color-button: #00adff;
 	--color-button-hover: #00386c;
+	--color-cta: #ff8204;
 	--radius-button: 1.05rem;
+	--radius-button-cta: 2rem;
 
 	/* Footer */
 	--color-footer: #f0f7ff;
@@ -52,7 +54,7 @@
 	--tracking-wide: 0.08em;
 	--glass-border-highlight: rgba(255, 255, 255, 0.5);
 	--page-bg: var(--color-surface);
-	--color-hero: var(--color-secondary);
+	--color-hero: var(--color-button);
 
 	/* Stacking: nav < modal */
 	--z-nav: 200;

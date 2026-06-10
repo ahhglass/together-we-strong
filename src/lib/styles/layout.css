@@ -28,6 +28,21 @@
 		overflow: hidden;
 	}
 
+	.campaign-hero__progress {
+		height: 0.875rem;
+		background: rgba(255, 255, 255, 0.28);
+	}
+
+	.campaign-hero__progress-fill {
+		background: rgba(255, 255, 255, 0.95);
+	}
+
+	@media (min-width: 640px) {
+		.campaign-hero__progress {
+			height: 1rem;
+		}
+	}
+
 	.campaign-hero__grid {
 		display: grid;
 		align-items: end;

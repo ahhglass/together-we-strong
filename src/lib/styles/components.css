@@ -54,6 +54,20 @@
 		border-color: var(--color-button);
 	}
 
+	.button--cta {
+		background: var(--color-cta);
+		padding: 0.85rem 4rem;
+		border-radius: var(--radius-button-cta);
+	}
+
+	.button--cta:hover,
+	.button--cta:focus-visible,
+	.button--cta.button--active,
+	.button--cta.button--active:hover,
+	.button--cta.button--active:focus-visible {
+		background: var(--color-button-hover);
+	}
+
 	.button--sm {
 		padding: clamp(0.55rem, 0.45rem + 0.3vw, 0.7rem) clamp(0.85rem, 0.7rem + 0.5vw, 1.1rem);
 	}

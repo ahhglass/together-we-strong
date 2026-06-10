@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 
-	export type ButtonVariant = 'default' | 'outline' | 'nav';
+	export type ButtonVariant = 'default' | 'outline' | 'nav' | 'cta';
 	export type ButtonSize = 'md' | 'sm';
 
 	let {
@@ -38,6 +38,7 @@
 		class={['button', className]}
 		class:button--outline={variant === 'outline'}
 		class:button--nav={variant === 'nav'}
+		class:button--cta={variant === 'cta'}
 		class:button--sm={size === 'sm'}
 		class:button--active={active}
 		{href}
@@ -56,6 +57,7 @@
 		class={['button', className]}
 		class:button--outline={variant === 'outline'}
 		class:button--nav={variant === 'nav'}
+		class:button--cta={variant === 'cta'}
 		class:button--sm={size === 'sm'}
 		class:button--active={active}
 		{type}

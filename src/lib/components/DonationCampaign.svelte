@@ -58,7 +58,7 @@
 				{/if}
 			</p>
 
-			<div class="mt-8 max-w-md">
+			<div class="mt-4 max-w-md">
 				<AnimatedAmountGroup>
 					<div class="flex items-end justify-between gap-4">
 						<div>
@@ -69,14 +69,14 @@
 						</div>
 						<div class="text-right">
 							<p class="text-base font-bold tracking-wide text-primary/70 uppercase">Цель</p>
-							<p class="mt-1 text-lg font-bold text-primary/85">
+							<p class="mt-1 text-3xl font-extrabold sm:text-4xl">
 								<AnimatedAmount value={campaign.goal} />
 							</p>
 						</div>
 					</div>
 
 					<div
-						class="mt-4 h-3.5 overflow-hidden rounded-full bg-primary/20 sm:h-4"
+						class="campaign-hero__progress mt-4 overflow-hidden rounded-full"
 						role="progressbar"
 						aria-valuenow={campaign.collected}
 						aria-valuemin={0}
@@ -84,7 +84,7 @@
 						aria-label="Прогресс сбора"
 					>
 						<div
-							class="h-full rounded-full bg-button transition-[width] duration-700 ease-out"
+							class="campaign-hero__progress-fill h-full rounded-full transition-[width] duration-700 ease-out"
 							style:width="{barWidth}%"
 						></div>
 					</div>
@@ -101,7 +101,7 @@
 			</div>
 
 			<div class="mt-8">
-				<Button onclick={openDonationModal}>Помочь</Button>
+				<Button variant="cta" onclick={openDonationModal}>Помочь</Button>
 			</div>
 		</div>
 
