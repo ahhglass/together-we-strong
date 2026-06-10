@@ -3,7 +3,7 @@ import { findCurrentParticipant } from '$lib/site/active-campaigns';
 import { fetchCampaignGroups } from '$lib/server/sheets';
 
 export const load: PageServerLoad = async ({ setHeaders }) => {
-	setHeaders({ 'cache-control': 'public, max-age=300, stale-while-revalidate=60' });
+	setHeaders({ 'cache-control': 'private, no-cache' });
 
 	const { groups, source } = await fetchCampaignGroups();
 	const participant = findCurrentParticipant(groups);

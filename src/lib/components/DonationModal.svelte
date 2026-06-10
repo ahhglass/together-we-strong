@@ -79,7 +79,7 @@
 <svelte:window onkeydown={onKeydown} />
 
 {#if open}
-	<div class="fixed inset-0 z-[var(--z-modal)] flex items-center justify-center p-4">
+	<div class="donation-modal fixed inset-0 z-[var(--z-modal)] flex items-center justify-center p-4 max-sm:items-start max-sm:pt-[38vh]">
 		<button
 			type="button"
 			class="absolute inset-0 bg-nav/40 backdrop-blur-[2px]"

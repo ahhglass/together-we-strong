@@ -4,7 +4,8 @@ import { buildCampaignForParticipant } from '$lib/site/campaign';
 import { fetchCampaignGroups } from '$lib/server/sheets';
 
 export const load: PageServerLoad = async ({ setHeaders }) => {
-	setHeaders({ 'cache-control': 'public, max-age=300, stale-while-revalidate=60' });
+	// Не кэшируем в браузере — иначе при client-side navigation остаётся stale unavailable.
+	setHeaders({ 'cache-control': 'private, no-cache' });
 
 	const { groups, source } = await fetchCampaignGroups();
 	const participant = findCurrentParticipant(groups);

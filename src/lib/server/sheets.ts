@@ -1,11 +1,11 @@
 import { env } from '$env/dynamic/private';
 import { parseSheetCsv, type CampaignGroup } from '$lib/site/active-campaigns';
 
-const CACHE_TTL_MS = 1 * 60 * 1000;
+const CACHE_TTL_MS = 5 * 60 * 1000;
 
 export type CampaignDataSource = 'csv' | 'unavailable';
 
-let cache: { data: CampaignGroup[]; source: CampaignDataSource; at: number } | null = null;
+let cache: { data: CampaignGroup[]; source: 'csv'; at: number } | null = null;
 
 function csvConfigured(): boolean {
 	return Boolean(
@@ -48,9 +48,7 @@ async function fetchPublishedCsv(): Promise<CampaignGroup[]> {
 }
 
 function useUnavailable(): { groups: CampaignGroup[]; source: 'unavailable' } {
-	const groups: CampaignGroup[] = [];
-	cache = { data: groups, source: 'unavailable', at: Date.now() };
-	return { groups, source: 'unavailable' };
+	return { groups: [], source: 'unavailable' };
 }
 
 export async function fetchCampaignGroups(): Promise<{
@@ -58,7 +56,7 @@ export async function fetchCampaignGroups(): Promise<{
 	source: CampaignDataSource;
 }> {
 	if (cache && Date.now() - cache.at < CACHE_TTL_MS) {
-		return { groups: cache.data, source: cache.source };
+		return { groups: cache.data, source: 'csv' };
 	}
 
 	if (!csvConfigured()) {
