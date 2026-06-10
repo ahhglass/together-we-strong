@@ -74,9 +74,7 @@
 <svelte:window onkeydown={onKeydown} />
 
 {#if open}
-	<div
-		class="donation-modal fixed inset-0 z-[var(--z-modal)] flex items-center justify-center p-4 max-sm:items-start max-sm:pt-[30vh]"
-	>
+	<div class="donation-modal fixed inset-0 z-[var(--z-modal)] flex items-center justify-center p-4">
 		<button
 			type="button"
 			class="absolute inset-0 bg-nav/40 backdrop-blur-[2px]"
@@ -88,7 +86,7 @@
 			role="dialog"
 			aria-modal="true"
 			aria-labelledby="donation-modal-title"
-			class="relative w-full max-w-lg rounded-[1.05rem] bg-surface p-6 text-nav shadow-xl"
+			class="donation-modal__panel relative w-full max-w-lg rounded-[1.05rem] bg-surface p-6 text-nav shadow-xl"
 		>
 			<h2 id="donation-modal-title" class="text-lg font-extrabold sm:text-xl">Перевод на карту</h2>
 			<p class="mt-2 text-lg text-footer-muted">
@@ -128,6 +126,16 @@
 {/if}
 
 <style>
+	.donation-modal {
+		overscroll-behavior: none;
+	}
+
+	.donation-modal__panel {
+		max-height: min(90dvh, calc(100% - 2rem));
+		overflow-y: auto;
+		overscroll-behavior-y: contain;
+	}
+
 	.donation-modal__copy {
 		letter-spacing: 0.04em;
 		white-space: nowrap;
