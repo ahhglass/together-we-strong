@@ -54,21 +54,23 @@ function useUnavailable(): { groups: CampaignGroup[]; source: 'unavailable' } {
 export async function fetchCampaignGroups(): Promise<{
 	groups: CampaignGroup[];
 	source: CampaignDataSource;
+	fetchedAt: Date | null;
 }> {
 	if (cache && Date.now() - cache.at < CACHE_TTL_MS) {
-		return { groups: cache.data, source: 'csv' };
+		return { groups: cache.data, source: 'csv', fetchedAt: new Date(cache.at) };
 	}
 
 	if (!csvConfigured()) {
-		return useUnavailable();
+		return { ...useUnavailable(), fetchedAt: null };
 	}
 
 	try {
 		const groups = await fetchPublishedCsv();
-		cache = { data: groups, source: 'csv', at: Date.now() };
-		return { groups, source: 'csv' };
+		const fetchedAt = new Date();
+		cache = { data: groups, source: 'csv', at: fetchedAt.getTime() };
+		return { groups, source: 'csv', fetchedAt };
 	} catch (error) {
 		console.error('Failed to load Google Sheet CSV:', error);
-		return useUnavailable();
+		return { ...useUnavailable(), fetchedAt: null };
 	}
 }

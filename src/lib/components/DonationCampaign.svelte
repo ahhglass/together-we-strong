@@ -32,6 +32,21 @@
 		activeTab = id;
 	}
 
+	function onTabKeydown(event: KeyboardEvent, index: number) {
+		const last = campaignTabs.length - 1;
+		let next = index;
+
+		if (event.key === 'ArrowRight') next = index === last ? 0 : index + 1;
+		else if (event.key === 'ArrowLeft') next = index === 0 ? last : index - 1;
+		else if (event.key === 'Home') next = 0;
+		else if (event.key === 'End') next = last;
+		else return;
+
+		event.preventDefault();
+		selectTab(campaignTabs[next].id);
+		document.getElementById(`tab-${campaignTabs[next].id}`)?.focus();
+	}
+
 	function openDonationModal() {
 		modalOpen = true;
 	}
@@ -129,7 +144,7 @@
 
 	<div class="mt-8 grid gap-4 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-5">
 		<div class="campaign-tabs" role="tablist" aria-label="Разделы сбора">
-			{#each campaignTabs as tab}
+			{#each campaignTabs as tab, index}
 				<button
 					id="tab-{tab.id}"
 					type="button"
@@ -137,7 +152,10 @@
 					class="campaign-tab"
 					class:campaign-tab--active={activeTab === tab.id}
 					aria-selected={activeTab === tab.id}
+					aria-controls="campaign-tabpanel"
+					tabindex={activeTab === tab.id ? 0 : -1}
 					onclick={() => selectTab(tab.id)}
+					onkeydown={(e) => onTabKeydown(e, index)}
 				>
 					<span>{tab.label}</span>
 					{#if activeTab === tab.id}
@@ -160,7 +178,12 @@
 			{/each}
 		</div>
 
-		<div class="campaign-panel" role="tabpanel" aria-labelledby={`tab-${activeTab}`}>
+		<div
+			id="campaign-tabpanel"
+			class="campaign-panel"
+			role="tabpanel"
+			aria-labelledby={`tab-${activeTab}`}
+		>
 			{#if activeTab === 'story'}
 				<p class="campaign-panel__text text-pretty">
 					{campaign.story}

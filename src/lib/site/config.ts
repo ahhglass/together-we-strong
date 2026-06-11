@@ -1,3 +1,5 @@
+export const UI_FEEDBACK_MS = 2500;
+
 export const routes = {
 	home: '/',
 	campaigns: '/campaigns',
@@ -43,6 +45,8 @@ export const socialIconSrc = {
 
 export const siteConfig = {
 	name: 'Вместе мы сила',
+	siteUrl: 'https://together-we-strong.ru',
+	ogImagePath: '/image/Hero.avif',
 	shareText: 'Поддержите сбор «Вместе мы сила» — вместе мы можем больше.',
 	organizerName: '«Вместе мы сила»',
 	contactEmail: 'help@together-we-strong.ru',

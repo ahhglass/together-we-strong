@@ -15,6 +15,7 @@ export interface CampaignParticipant {
 	cardNumber?: string;
 	bank?: string;
 	spending?: CampaignSpendingItem[];
+	updatedAt?: string;
 }
 
 export interface CampaignGroup {
@@ -55,7 +56,7 @@ function parseOptionalNumber(value: string | undefined, fallback: number): numbe
 
 /**
  * Строки таблицы без заголовка:
- * name | collected | goal | group | sort_order | completed | title | story | location | card_number | bank | spending
+ * name | collected | goal | group | sort_order | completed | title | story | location | card_number | bank | spending | updated_at
  *
  * spending — несколько строк в одной ячейке: «Заголовок: описание» (каждая статья с новой строки)
  */
@@ -115,7 +116,8 @@ export function parseSheetRows(rows: string[][]): CampaignGroup[] {
 				location: String(row[8] ?? '').trim() || undefined,
 				cardNumber: String(row[9] ?? '').trim() || undefined,
 				bank: String(row[10] ?? '').trim() || undefined,
-				spending: parseSpendingCell(row[11])
+				spending: parseSpendingCell(row[11]),
+				updatedAt: String(row[12] ?? '').trim() || undefined
 			},
 			group,
 			sortOrder

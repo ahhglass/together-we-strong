@@ -2,9 +2,8 @@
 	import { browser } from '$app/environment';
 	import { onDestroy } from 'svelte';
 	import Button from '$lib/components/Button.svelte';
+	import { UI_FEEDBACK_MS } from '$lib/site/config';
 	import type { CampaignPayment } from '$lib/site/campaign';
-
-	const COPY_FEEDBACK_MS = 2500;
 
 	let {
 		open = $bindable(false),
@@ -15,6 +14,7 @@
 	} = $props();
 
 	let copied = $state(false);
+	let copyBtn = $state<HTMLButtonElement | null>(null);
 	let copyTimeout: ReturnType<typeof setTimeout> | undefined;
 
 	const cardNumberPlain = $derived(payment.cardNumber.replace(/\s/g, ''));
@@ -30,7 +30,7 @@
 		clearTimeout(copyTimeout);
 		copyTimeout = setTimeout(() => {
 			copied = false;
-		}, COPY_FEEDBACK_MS);
+		}, UI_FEEDBACK_MS);
 	}
 
 	function copyWithFallback(value: string) {
@@ -67,6 +67,10 @@
 
 	$effect(() => {
 		if (!open) resetCopyState();
+	});
+
+	$effect(() => {
+		if (open && copyBtn) copyBtn.focus();
 	});
 
 	$effect(() => {
@@ -122,6 +126,7 @@
 				<div>
 					<p class="eyebrow">Номер карты</p>
 					<button
+						bind:this={copyBtn}
 						type="button"
 						class="donation-modal__copy card mt-2 flex w-full cursor-pointer items-center justify-between px-4 py-3 text-lg font-bold transition-colors hover:bg-footer/80"
 						class:donation-modal__copy--done={copied}

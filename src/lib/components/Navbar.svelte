@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { page } from '$app/state';
 	import Button from '$lib/components/Button.svelte';
-	import { navMenu, pageIdFromPath, routes, type PageId } from '$lib/site/config';
+	import { navMenu, pageIdFromPath, routes, UI_FEEDBACK_MS, type PageId } from '$lib/site/config';
 	import { sharePage } from '$lib/site/share';
 
 	type NavStatus = 'closed' | 'open' | 'closing';
@@ -15,8 +15,6 @@
 	let panelEl = $state<HTMLDivElement | null>(null);
 	let shareLabel = $state('Поделиться');
 	let shareTimeout: ReturnType<typeof setTimeout> | undefined;
-
-	const SHARE_FEEDBACK_MS = 2500;
 
 	const activePage = $derived(pageIdFromPath(page.url.pathname));
 	const isOpen = $derived(navStatus === 'open');
@@ -69,7 +67,7 @@
 		clearTimeout(shareTimeout);
 		shareTimeout = setTimeout(() => {
 			shareLabel = 'Поделиться';
-		}, SHARE_FEEDBACK_MS);
+		}, UI_FEEDBACK_MS);
 	}
 
 	function syncScroll() {

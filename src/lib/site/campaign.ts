@@ -58,13 +58,20 @@ const campaignContent = {
 		'Если у вас остались вопросы о прозрачности сбора, напишите нам — ответим в течение рабочего дня. Подробные условия приёма пожертвований описаны в правилах оферты.'
 	],
 	location: 'Москва',
-	updatedAt: '9 июня 2026',
 	payment: {
 		cardNumber: '2200 7007 1234 5678',
 		bank: 'Сбербанк',
 		recipient: ''
 	}
 } as const;
+
+export function formatUpdatedAt(date: Date = new Date()): string {
+	return date.toLocaleDateString('ru-RU', {
+		day: 'numeric',
+		month: 'long',
+		year: 'numeric'
+	});
+}
 
 export function heroLinesFromName(name: string): string[] {
 	const parts = name.trim().split(/\s+/);
@@ -73,7 +80,8 @@ export function heroLinesFromName(name: string): string[] {
 }
 
 export function buildCampaignForParticipant(
-	participant: CampaignParticipant & { collected: number }
+	participant: CampaignParticipant & { collected: number },
+	fallbackUpdatedAt?: string | null
 ): Campaign {
 	const fallbackStory = `Мы собираем средства для ${participant.name}. ${campaignContent.story}`;
 
@@ -91,7 +99,7 @@ export function buildCampaignForParticipant(
 		goal: participant.goal,
 		collected: participant.collected,
 		location: participant.location ?? campaignContent.location,
-		updatedAt: campaignContent.updatedAt,
+		updatedAt: participant.updatedAt ?? fallbackUpdatedAt ?? formatUpdatedAt(),
 		payment: {
 			cardNumber: participant.cardNumber ?? campaignContent.payment.cardNumber,
 			bank: participant.bank ?? campaignContent.payment.bank,

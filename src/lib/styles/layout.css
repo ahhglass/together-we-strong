@@ -1,4 +1,24 @@
 @layer components {
+	.skip-link {
+		position: absolute;
+		left: -9999px;
+		top: 1rem;
+		z-index: calc(var(--z-nav) + 1);
+		padding: 0.65rem 1rem;
+		border-radius: var(--radius-card);
+		background: var(--color-nav);
+		color: var(--color-primary);
+		font-size: var(--text-base);
+		font-weight: 700;
+		text-decoration: none;
+	}
+
+	.skip-link:focus {
+		left: 1rem;
+		outline: 2px solid var(--color-button);
+		outline-offset: 2px;
+	}
+
 	.page-content {
 		flex: 1;
 		width: 100%;
@@ -348,12 +368,6 @@
 		font-variant-numeric: tabular-nums;
 		line-height: 0.85;
 	}
-}
-
-body {
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
 }
 
 body.nav-open,

@@ -3,10 +3,10 @@ import { findCurrentParticipant } from '$lib/site/active-campaigns';
 import { buildCampaignForParticipant } from '$lib/site/campaign';
 
 export const load: PageServerLoad = async ({ parent }) => {
-	const { groups } = await parent();
+	const { groups, dataUpdatedAt } = await parent();
 	const participant = findCurrentParticipant(groups);
 
 	return {
-		campaign: participant ? buildCampaignForParticipant(participant) : null
+		campaign: participant ? buildCampaignForParticipant(participant, dataUpdatedAt) : null
 	};
 };

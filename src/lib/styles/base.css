@@ -20,6 +20,8 @@
 
 	body {
 		@apply min-h-screen font-sans text-lg text-nav;
+		display: flex;
+		flex-direction: column;
 	}
 
 	body::before {

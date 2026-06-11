@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Button from '$lib/components/Button.svelte';
-	import { siteConfig, socialIconSrc } from '$lib/site/config';
+	import SocialLinks from '$lib/components/SocialLinks.svelte';
+	import { siteConfig } from '$lib/site/config';
 
 	const year = new Date().getFullYear();
 	const { footer } = siteConfig;
@@ -53,31 +53,7 @@
 
 					<div>
 						<h3 class="text-lg font-extrabold text-nav">Социальные сети</h3>
-						<ul class="mt-4 space-y-2.5">
-							{#each footer.socialLinks as social}
-								<li>
-									<a
-										href={social.href}
-										target="_blank"
-										rel="noopener noreferrer"
-										class="inline-flex items-center gap-2 text-lg text-footer-muted transition-colors hover:text-nav"
-									>
-										<span class="flex size-5 items-center justify-center">
-											<img
-												src={socialIconSrc[social.icon]}
-												alt=""
-												width="24"
-												height="24"
-												class="size-6"
-												loading="lazy"
-												decoding="async"
-											/>
-										</span>
-										{social.label}
-									</a>
-								</li>
-							{/each}
-						</ul>
+						<SocialLinks size="md" class="mt-4" />
 
 						<a
 							href="mailto:{siteConfig.contactEmail}"
