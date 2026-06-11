@@ -46,7 +46,7 @@
 	}
 
 	.contacts-grid {
-		--contacts-art: clamp(7.75rem, 21vw, 9.5rem);
+		--contacts-art: clamp(14rem, 100%, 24rem);
 		display: grid;
 		gap: 1rem;
 	}
@@ -67,17 +67,17 @@
 	}
 
 	.contacts-card {
-		min-height: 11rem;
+		position: relative;
+		min-height: clamp(12.5rem, 30vw, 15rem);
 		padding: clamp(1.25rem, 3vw, 1.75rem);
 		border-radius: clamp(1.25rem, 2.5vw, 1.75rem);
 		background: var(--color-footer);
 		overflow: hidden;
 	}
 
-	.contacts-card__body::after {
-		content: '';
-		display: table;
-		clear: both;
+	.contacts-card__body {
+		position: relative;
+		z-index: 1;
 	}
 
 	.contacts-card__title {
@@ -96,24 +96,26 @@
 		font-size: var(--text-lg);
 		font-weight: 500;
 		line-height: var(--leading-snug);
-		color: color-mix(in srgb, var(--color-nav) 78%, transparent);
+		color: var(--color-nav);
 	}
 
 	.contacts-card__extra {
-		clear: both;
+		position: relative;
+		z-index: 1;
 		margin-top: 0.85rem;
+		max-width: 68%;
 	}
 
 	.contacts-card__media {
-		float: right;
+		position: absolute;
+		right: clamp(-2.5rem, -3.5vw, -3.5rem);
+		bottom: clamp(-2.5rem, -2.5vw, -3.5rem);
 		width: var(--contacts-art);
 		height: var(--contacts-art);
-		margin: -0.15rem clamp(-1.25rem, -3.5vw, -2rem) 0.35rem 0.75rem;
+		z-index: 0;
 		line-height: 0;
-	}
-
-	.contacts-card--wide .contacts-card__media {
-		margin-right: clamp(-1.75rem, -4.5vw, -2.75rem);
+		pointer-events: none;
+		opacity: 0.5;
 	}
 
 	.contacts-card__image,
@@ -123,7 +125,6 @@
 		height: 100%;
 		object-fit: contain;
 		object-position: right bottom;
-		shape-image-threshold: 0.35;
 	}
 
 	.contacts-card__placeholder {

@@ -72,40 +72,39 @@ export const contactsPage = {
 		'Чтобы попасть в список сборов или задать вопрос по проекту, напишите нам в социальных сетях — это основной и самый быстрый способ связи.',
 	applicationNote:
 		'Мы рассматриваем каждую заявку вручную. Публикация на сайте — после проверки материалов и согласования с вами.',
-	/** image — опциональный путь к иллюстрации, например `/image/contacts/social.webp` */
 	cards: [
 		{
 			id: 'social',
 			title: 'Социальные сети',
-			image: '/image/contacts/send.png',
+			image: '/image/contacts/send.avif',
 			description:
 				'Для связи и заявки на включение в список сборов напишите нам в мессенджерах и соцсетях — мы читаем сообщения там в первую очередь.'
 		},
 		{
 			id: 'story',
 			title: 'Ваша история',
-			image: '/image/contacts/story.png',
+			image: '/image/contacts/story.avif',
 			description:
 				'Кратко расскажите, что случилось, кому нужна помощь и на что пойдут собранные средства.'
 		},
 		{
 			id: 'proof',
 			title: 'Подтверждающие материалы',
-			image: '/image/contacts/proof.png',
+			image: '/image/contacts/proof.avif',
 			description:
 				'Приложите скриншоты или документы о сложной ситуации. По возможности — без лишних персональных данных в открытом доступе.'
 		},
 		{
 			id: 'details',
 			title: 'Сумма и реквизиты',
-			image: '/image/contacts/details.png',
+			image: '/image/contacts/details.avif',
 			description:
 				'Укажите цель сбора, реквизиты для перевода и город, если это важно для истории.'
 		},
 		{
 			id: 'email',
 			title: 'Email - Ваша почта',
-			image: '/image/contacts/email.png',
+			image: '/image/contacts/email.avif',
 			description:
 				'По организационным вопросам, жалобам и сотрудничеству — ответим в ближайшее рабочее время.'
 		}
