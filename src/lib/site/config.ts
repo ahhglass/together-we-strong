@@ -103,7 +103,7 @@ export const contactsPage = {
 		},
 		{
 			id: 'email',
-			title: 'Email - Ваша почта',
+			title: 'Email - связь с нами',
 			image: '/image/contacts/email.avif',
 			description:
 				'По организационным вопросам, жалобам и сотрудничеству — ответим в ближайшее рабочее время.'
