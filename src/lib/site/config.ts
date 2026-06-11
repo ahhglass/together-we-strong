@@ -1,4 +1,6 @@
 export const UI_FEEDBACK_MS = 2500;
+export const CAMPAIGN_REFRESH_MS = 60_000;
+export const CAMPAIGN_DATA_KEY = 'campaign:groups';
 
 export const routes = {
 	home: '/',

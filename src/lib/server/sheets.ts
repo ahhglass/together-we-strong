@@ -1,7 +1,6 @@
 import { env } from '$env/dynamic/private';
 import { parseSheetCsv, type CampaignGroup } from '$lib/site/active-campaigns';
-
-const CACHE_TTL_MS = 5 * 60 * 1000;
+import { CAMPAIGN_REFRESH_MS } from '$lib/site/config';
 
 export type CampaignDataSource = 'csv' | 'unavailable';
 
@@ -56,7 +55,7 @@ export async function fetchCampaignGroups(): Promise<{
 	source: CampaignDataSource;
 	fetchedAt: Date | null;
 }> {
-	if (cache && Date.now() - cache.at < CACHE_TTL_MS) {
+	if (cache && Date.now() - cache.at < CAMPAIGN_REFRESH_MS) {
 		return { groups: cache.data, source: 'csv', fetchedAt: new Date(cache.at) };
 	}
 

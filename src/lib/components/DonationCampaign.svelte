@@ -78,13 +78,13 @@
 					<div class="flex items-end justify-between gap-4">
 						<div>
 							<p class="eyebrow eyebrow--light">Собрано</p>
-							<p class="mt-1 text-3xl font-extrabold sm:text-4xl">
+							<p class="mt-1 text-2xl font-extrabold sm:text-3xl">
 								<AnimatedAmount value={campaign.collected} animateOnMount />
 							</p>
 						</div>
 						<div class="text-right">
 							<p class="eyebrow eyebrow--light">Цель</p>
-							<p class="mt-1 text-3xl font-extrabold sm:text-4xl">
+							<p class="mt-1 text-2xl font-extrabold sm:text-3xl">
 								<AnimatedAmount value={campaign.goal} />
 							</p>
 						</div>
