@@ -69,7 +69,7 @@
 			<p class="mt-4 max-w-xl text-pretty text-lg text-primary/90">
 				{campaign.title}
 				{#if campaign.location}
-					<span class="text-primary/70"> · {campaign.location}</span>
+					<span class="text-primary/70"> - {campaign.location}</span>
 				{/if}
 			</p>
 
@@ -109,7 +109,7 @@
 							<AnimatedAmount value={progress} format={{ maximumFractionDigits: 0 }} suffix="%" />
 						</span>
 						<span class="text-primary/70">
-							· осталось <AnimatedAmount value={remaining} />
+							- осталось <AnimatedAmount value={remaining} />
 						</span>
 					</p>
 				</AnimatedAmountGroup>
@@ -141,6 +141,8 @@
 	<h2 class="text-[clamp(1.75rem,5vw,2.75rem)] leading-tight font-extrabold text-nav">
 		История и помощь
 	</h2>
+
+	<p class="mt-4 text-base text-footer-muted">Обновлено {campaign.updatedAt}</p>
 
 	<div class="mt-8 grid gap-4 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-5">
 		<div class="campaign-tabs" role="tablist" aria-label="Разделы сбора">
@@ -229,7 +231,7 @@
 		</div>
 	</div>
 
-	<p class="mt-6 text-base text-footer-muted">Обновлено {campaign.updatedAt}</p>
+	
 </section>
 
 <DonationModal bind:open={modalOpen} payment={campaign.payment} />
